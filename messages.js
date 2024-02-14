@@ -1,3 +1,4 @@
+
 const getRamdomNumber = () => {
 
     let ramdomNumber =  Math.floor(Math.random() * 13);
@@ -5,7 +6,7 @@ const getRamdomNumber = () => {
     return ramdomNumber;
 }
 
-
+//A list of verbs
 const verbs = [
     'should', 
     'go', 
@@ -22,16 +23,7 @@ const verbs = [
     'drink'
 ]
 
-const getRamdomVerb = () => {
-
-    let ramdomNumber = getRamdomNumber();
-    //compare ramdom number with index and if there is much output the verb
-   const NewVerbs =  verbs.filter((verb, index) => index === ramdomNumber);
-   
-   return NewVerbs[0];
-}
-
-
+//A list of nouns
 const nouns = [
     'dog',
     'city',
@@ -49,9 +41,46 @@ const nouns = [
     'watch'
 ]
 
+//A list of pronouns
+const pronouns = [
+    'I',
+    'You',
+    'He',
+    'She',
+    'It',
+    'We',
+    'They'
+]
 
-//make only one function where I will generate ramdom nouns and verbs into array
+//Get ramdom verb
+// const getRamdomVerb = () => {
 
-console.log(getRamdomVerb());
+//     let ramdomNumber = getRamdomNumber();
+//     //compare ramdom number with index and if there is much output the verb
+//    const NewVerbs =  verbs.filter((verb, index) => index === ramdomNumber);
+   
+//    return NewVerbs[0];
+// }
+
+//Generate ramdom nouns, verbs and pronouns into array
+const getRamdomWord = () => {
+    let newArrayWords = [];
+
+    const ramdomNumber = getRamdomNumber();
+
+
+    //I need to do the loop of pronouns till the word is going to be generaterd
+    // newArrayWords = pronouns.filter((word, index) => index === ramdomNumber ? newArrayWords.push(word) : '');
+    verbs.filter((word, index) => index === ramdomNumber ? newArrayWords.push(word) : '');
+    nouns.filter((word, index) => index === ramdomNumber ? newArrayWords.push(word) : '');
+
+    console.log(newArrayWords);
+}
+
+
+
+//make only one function where I will generate ramdom nouns, verbs and pronouns into array
+
+console.log(getRamdomWord());
 
 
