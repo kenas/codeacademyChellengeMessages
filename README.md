@@ -17,4 +17,4 @@ Prerequisites:
 * Git and GitHub
 * Command line
 
-
+I spent a day working on this project as a beginner. The goal was to create random messages, and the generator produced some amusing ones. While the grammar could be improved, it wasn't the primary focus of the task.
