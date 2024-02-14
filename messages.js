@@ -21,9 +21,9 @@ const verbs = [
     'make', 
     'walk', 
     'stop', 
-    'swimming', 
-    'pulling', 
-    'pushing', 
+    'swimm', 
+    'pull', 
+    'push', 
     'laugh', 
     'mop', 
     'throw',
@@ -44,34 +44,30 @@ const nouns = [
     'shop',
     'Monday',
     'Sunday',
-    'Juice',
-    'News paper',
+    'juice',
+    'news paper',
     'watch'
 ]
 
 //A list of pronouns
 const pronouns = [
     'I',
+    'I am',
     'You',
+    'You are',
     'He',
+    'He is',
     'She',
+    'She is',
     'It',
     'We',
-    'They'
+    'We are',
+    'They',
+    'They are'
 ]
 
-//Get ramdom verb
-// const getRamdomVerb = () => {
-
-//     let ramdomNumber = getRamdomNumber();
-//     //compare ramdom number with index and if there is much output the verb
-//    const NewVerbs =  verbs.filter((verb, index) => index === ramdomNumber);
-   
-//    return NewVerbs[0];
-// }
-
 //Generate ramdom nouns, verbs and pronouns into array
-const getRamdomWord = () => {
+const getRamdomWords = () => {
 
     let newArrayWords = [];
 
@@ -80,18 +76,71 @@ const getRamdomWord = () => {
     
     Olso note that the function is requte a number.
     */
-    let ramdomNumber = getRamdomNumber(pronouns.length); 
-        //console.log(ramdomNumber);
+    let ramdomNumber = getRamdomNumber(pronouns.length);
 
-    pronouns.filter((pronoun, index) => {
-        newArrayWords.push(pronoun);
-    })
+    const getRamdomSentence = (pronouns, verbs, nouns, newArrayWords, ramdomNumber) => {
 
-    return newArrayWords;
-    //console.log(getNumberForPronouns);
+        if(pronouns[ramdomNumber])  {
+            newArrayWords.push(pronouns[ramdomNumber]);
+        } 
+    
+        if(verbs[ramdomNumber])  {
+            newArrayWords.push(verbs[ramdomNumber]);
+        } 
+    
+        if(nouns[ramdomNumber])  {
+            newArrayWords.push(nouns[ramdomNumber]);
+        }
+
+        return newArrayWords;
+    }
+
+    return getRamdomSentence(pronouns, verbs, nouns, newArrayWords, ramdomNumber);
+
 }
 
 
-console.log(getRamdomWord());
+const getGramaRight = (getRamdomWords) => {
+    let test = [];
+
+    let ramdomPronouns = getRamdomWords();
+    const ramdomNumber = getRamdomNumber(pronouns.length);
+    
+    const makeSureVerbIsRight = verbs[ramdomNumber];
+    //console.log(makeSureVerbIsRight);
+    //console.log(getTheVerbRight(forTheVerb));
+    const getTheVerbRight = (makeSureVerbIsRight) => {
+        
+        if(makeSureVerbIsRight === 'smoke') {
+            return 'smoking';
+        }
+        
+        if(makeSureVerbIsRight === 'make') {
+            return 'making';
+        }
+    }
+
+    console.log(getTheVerbRight(makeSureVerbIsRight))
+    //the method includes is case-sensitive so I have to conver it to small letters
+    if(ramdomPronouns[0].toLowerCase().includes('you are') 
+        || ramdomPronouns[0].toLowerCase().includes('i am') 
+        || ramdomPronouns[0].toLowerCase().includes('she is')  
+        || ramdomPronouns[0].toLowerCase().includes('he is')
+        || ramdomPronouns[0].toLowerCase().includes('we are') 
+        || ramdomPronouns[0].toLowerCase().includes('they are') 
+        ) {
+        
+          
+        //test.push(ramdomPronouns[0], verbs[ramdomNumber] === 'smoke' ? verbs[ramdomNumber] = 'smoking' : verbs[ramdomNumber] + 'ing' , nouns[ramdomNumber]);
+        test.push(ramdomPronouns[0], getTheVerbRight(makeSureVerbIsRight) ? getTheVerbRight(makeSureVerbIsRight) : verbs[ramdomNumber] + 'ing', nouns[ramdomNumber]);
+    } else {
+        test.push(ramdomPronouns[0], verbs[ramdomNumber], nouns[ramdomNumber]);
+    }
+        
+    
+    return `${test[0]} ${test[1]} the ${test[2]}`;
+}
+
+console.log(getGramaRight(getRamdomWords));
 
 
