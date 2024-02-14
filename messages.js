@@ -101,15 +101,20 @@ const getRamdomWords = () => {
 
 
 const getGramaRight = (getRamdomWords) => {
-    let test = [];
 
+    //Array for the final output messages
+    let theMessages = [];
+
+    // Get the ramdom pronounces
     let ramdomPronouns = getRamdomWords();
+    
+    //Still need to make ramdo numbers
     const ramdomNumber = getRamdomNumber(pronouns.length);
     
     const makeSureVerbIsRight = verbs[ramdomNumber];
-    //console.log(makeSureVerbIsRight);
-    //console.log(getTheVerbRight(forTheVerb));
-    const getTheVerbRight = (makeSureVerbIsRight) => {
+
+    //Because not all verbs ending with ing 
+    const verbConjugations = (makeSureVerbIsRight) => {
         
         if(makeSureVerbIsRight === 'smoke') {
             return 'smoking';
@@ -120,8 +125,7 @@ const getGramaRight = (getRamdomWords) => {
         }
     }
 
-    console.log(getTheVerbRight(makeSureVerbIsRight))
-    //the method includes is case-sensitive so I have to conver it to small letters
+    //Check for those matches. If they match push into array of theMessages with the right verbs
     if(ramdomPronouns[0].toLowerCase().includes('you are') 
         || ramdomPronouns[0].toLowerCase().includes('i am') 
         || ramdomPronouns[0].toLowerCase().includes('she is')  
@@ -131,14 +135,13 @@ const getGramaRight = (getRamdomWords) => {
         ) {
         
           
-        //test.push(ramdomPronouns[0], verbs[ramdomNumber] === 'smoke' ? verbs[ramdomNumber] = 'smoking' : verbs[ramdomNumber] + 'ing' , nouns[ramdomNumber]);
-        test.push(ramdomPronouns[0], getTheVerbRight(makeSureVerbIsRight) ? getTheVerbRight(makeSureVerbIsRight) : verbs[ramdomNumber] + 'ing', nouns[ramdomNumber]);
+        theMessages.push(ramdomPronouns[0], verbConjugations(makeSureVerbIsRight) ? verbConjugations(makeSureVerbIsRight) : verbs[ramdomNumber] + 'ing', nouns[ramdomNumber]);
     } else {
-        test.push(ramdomPronouns[0], verbs[ramdomNumber], nouns[ramdomNumber]);
+        theMessages.push(ramdomPronouns[0], verbs[ramdomNumber], nouns[ramdomNumber]);
     }
         
-    
-    return `${test[0]} ${test[1]} the ${test[2]}`;
+    //The final output
+    return `${theMessages[0]} ${theMessages[1]} the ${theMessages[2]}`;
 }
 
 console.log(getGramaRight(getRamdomWords));
