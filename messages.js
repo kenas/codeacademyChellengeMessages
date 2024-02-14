@@ -1,8 +1,16 @@
 
-const getRamdomNumber = () => {
+//The function will return a number
+const getRamdomNumber = (multiplyBy) => {
 
-    let ramdomNumber =  Math.floor(Math.random() * 13);
+    // Check if the parametr is a number
+    let ramdomNumber = 0;
 
+    if(typeof multiplyBy === 'number') {
+        ramdomNumber =  Math.floor(Math.random() * multiplyBy);
+    } else {
+        return 'The parameter require a number!';
+    }
+ 
     return ramdomNumber;
 }
 
@@ -35,7 +43,7 @@ const nouns = [
     'TV',
     'shop',
     'Monday',
-    'SUnday',
+    'Sunday',
     'Juice',
     'News paper',
     'watch'
@@ -64,22 +72,25 @@ const pronouns = [
 
 //Generate ramdom nouns, verbs and pronouns into array
 const getRamdomWord = () => {
+
     let newArrayWords = [];
 
-    const ramdomNumber = getRamdomNumber();
+    /* The getRamdomNumber() need to be call only once. NOT in the loop!
+    If I will put it into filter it will generate over and over. 
+    
+    Olso note that the function is requte a number.
+    */
+    let ramdomNumber = getRamdomNumber(pronouns.length); 
+        //console.log(ramdomNumber);
 
+    pronouns.filter((pronoun, index) => {
+        newArrayWords.push(pronoun);
+    })
 
-    //I need to do the loop of pronouns till the word is going to be generaterd
-    // newArrayWords = pronouns.filter((word, index) => index === ramdomNumber ? newArrayWords.push(word) : '');
-    verbs.filter((word, index) => index === ramdomNumber ? newArrayWords.push(word) : '');
-    nouns.filter((word, index) => index === ramdomNumber ? newArrayWords.push(word) : '');
-
-    console.log(newArrayWords);
+    return newArrayWords;
+    //console.log(getNumberForPronouns);
 }
 
-
-
-//make only one function where I will generate ramdom nouns, verbs and pronouns into array
 
 console.log(getRamdomWord());
 
